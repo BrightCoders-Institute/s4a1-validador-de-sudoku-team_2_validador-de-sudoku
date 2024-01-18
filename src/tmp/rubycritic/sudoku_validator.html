@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ruby Critic - Home</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- StyleSheets -->
+    <link href="assets/vendor/stylesheets/bootstrap.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/vendor/stylesheets/font-awesome.min.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/vendor/stylesheets/prettify.custom_theme.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+    <link href="assets/stylesheets/application.css" media="screen, projection, print" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <header class="navbar navbar-default navbar-fixed-top">
+      <a href="#menu-toggle" class="btn btn-default hidden-lg visible-sm-* hidden-md visible-xs-* pull-left" id="menu-toggle"><i class="fa fa-bars" aria-hidden="true"></i></a>
+      <a href="overview.html"><img src="assets/images/logo.png" alt="Ruby Critic Logo" title="Ruby Critic Logo" width="55"><span class="logo">RUBYCRITIC</span></a>
+      
+    </header>
+    <div id="wrapper">
+      <!-- Sidebar -->
+      <aside id="sidebar-wrapper">
+        <ul class="sidebar-nav">
+          <li class="sidebar-item">
+            <a href="overview.html" class="project-nav-item overview-nav"><i class="fa fa-dashboard"></i>Overview</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="code_index.html" class="project-nav-item code-index-nav"><i class="fa fa-code"></i>Code</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="smells_index.html" class="project-nav-item smells-index-nav"><i class="fa fa-warning"></i>Smells</a>
+          </li>
+          <li class="sidebar-item">
+            <a href="simple_cov_index.html" class="project-nav-item coverage-index-nav"><i class="fa fa-umbrella"></i>Coverage</a>
+          </li>
+        </ul>
+      </aside>
+      <!-- /#sidebar-wrapper -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <div class="row">
+  <!--Page Title -->
+  <div class="Page_Title">
+    <div class="file-time">
+      <span class="committed-at">
+        
+          Updated <time class='js-timeago' datetime='2024-01-16 18:51:42 -0600'>2024-01-16 18:51:42 -0600</time>
+        
+      </span>
+    </div>
+    <div>
+      <h3><small>. /</small> sudoku_validator.rb</h3>
+    </div>
+  </div>
+  <!--End Page Title -->
+  <div class="Content_Wrapper">
+    <!-- code detail -->
+    <div class="code-top-detail clearfix row">
+      <div class="col-md-8">
+        <div class="row">
+          <div class="col-md-1">
+            <div class="rating d big">
+              D
+            </div>
+          </div>
+          <div class="code-statistics col-md-11">
+            <div class="col-md-3">
+              <div><span class="metric">95</span><small> lines of codes</small></div>
+              <div><span class="metric">11</span><small> methods</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">5.5</span><small> complexity/method</small></div>
+              <div><span class="metric">1</span><small> churn</small></div>
+            </div>
+            <div class="col-md-3">
+              <div><span class="metric">60.01</span><small> complexity</small></div>
+              <div><span class="metric">92</span><small> duplications</small></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="code-tabs">
+          <ul class="nav nav-pills right-to-left">
+            <li><a href="#" id="toggle-code" class="toggle-button button">code</a></li>
+            <li class="active">
+              <a href="#" id="toggle-smells" class="toggle-button button">
+                8
+                smells
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <code class="prettyprint linenums lang-ruby file-code js-file-code"># frozen_string_literal: true
+
+# Clase SudokuValidator, recibe como parámetro un tablero de sudoku.
+class SudokuValidator
+  def initialize(board)
+    @board = board
+  end
+
+  # El método valid_board regresa true si las condiciones de los demás métodos
+  # se cumplen, de lo contrario regresa false.
+  def valid_board
+    convert_zeros_to_nil # Se convierten todos los 0 del array a nil.
+    # Si el array bidimensional cumple con todas las validaciones se regresará true.
+    valid_size? &amp;&amp; valid_numbers? &amp;&amp; valid_rows? &amp;&amp; valid_column? &amp;&amp; valid_region?
+  end
+
+  # Valida que las columnas y filas del array sean 9.
+  def valid_size?
+    @board.length == 9 &amp;&amp; @board.all? { |row| row.length == 9 }
+  end
+
+  # Valida que no se repita ningún número en la columna correspondiente.
+  def valid_column?
+    @board.transpose.all? { |col| unique_elements?(col) }
+  end
+
+  # Valida que no se repita ningún número en la fila correspondiente.
+  def valid_rows?
+    @board.all? { |row| unique_elements?(row) }
+  end
+
+  # Verificar que cada una de las regiones cumplan con las reglas. Es decir
+  # ningún número se debe de repetir en cada región.
+  def valid_region?
+    # Itera sobre los desplazamientos de fila en bloques de 3.
+    (0..2).all? do |row_offset|<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>SudokuValidator#valid_region? calls '(0..2).all?' 2 times</span>              <span>Locations:</span>                  <a href="sudoku_validator.html#L36" class="js-smell-location">0</a>                  <a href="sudoku_validator.html#L38" class="js-smell-location">1</a>                  </div>  </li></ol>
+      # Itera sobre los desplazamientos de columna en bloques de 3.
+      (0..2).all? do |col_offset|<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>SudokuValidator#valid_region? calls '(0..2).all?' 2 times</span>              <span>Locations:</span>                  <a href="sudoku_validator.html#L36" class="js-smell-location">0</a>                  <a href="sudoku_validator.html#L38" class="js-smell-location">1</a>                  </div>  </li>  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md" target="_blank"><b>NestedIterators</b></a>        </span>      </div>      <span>SudokuValidator#valid_region? contains iterators nested 2 deep</span>          </div>  </li></ol>
+        # Obtiene la región actual del tablero.
+        region = get_region(row_offset * 3, col_offset * 3)
+        # Verifica que los elementos de la región sean únicos.
+        unique_elements?(region.flatten)
+      end
+    end
+  end
+
+  # Obtiene una región específica del tablero.
+  # La región se especifica mediante un desplazamiento de fila y columna.
+  def get_region(row_offset, col_offset)
+    # Obtiene una submatriz de 3x3 que representa la región.
+    @board[row_offset, 3].flat_map { |row| row[col_offset, 3] }
+  end
+
+  # Verifica que todos los números del tablero sean válidos.
+  # Utiliza la función valid_number? para comprobar cada número individual.
+  def valid_numbers?
+    # Verifica que todos los números en el tablero sean válidos.
+    @board.flatten.all? { |num| valid_number?(num) }
+  end
+
+  # Verifica si el número es válido.
+  # Un número es válido si es nil o está en el rango del 1 al 9.
+  def valid_number?(number)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>SudokuValidator#valid_number? doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+    # El nímero es válido si es nil o está en el rango del 1 al 9.
+    number.nil? || (1..9).include?(number)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nil-Check.md" target="_blank"><b>NilCheck</b></a>        </span>      </div>      <span>SudokuValidator#valid_number? performs a nil-check</span>          </div>  </li></ol>
+  end
+
+  # Verifica que los elementos del array sean únicos.
+  # Elimina los elementos nulos antes de verificarlos.
+  def unique_elements?(array)<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Utility-Function.md" target="_blank"><b>UtilityFunction</b></a>        </span>      </div>      <span>SudokuValidator#unique_elements? doesn't depend on instance state (maybe move it to another class?)</span>          </div>  </li></ol>
+    # Comprueba si la longitud del array después de eliminar
+    # duplicados es igual a la original
+    array.compact.uniq.length == array.compact.length<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Duplicate-Method-Call.md" target="_blank"><b>DuplicateMethodCall</b></a>        </span>      </div>      <span>SudokuValidator#unique_elements? calls 'array.compact' 2 times</span>          </div>  </li></ol>
+  end
+
+  # Itera en todo el tablero para reemplazar los ceros a nil.
+  def convert_zeros_to_nil
+    @board.map! { |row| row.map { |value| value.zero? ? nil : value } }<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="https://github.com/troessner/reek/blob/master/docs/Nested-Iterators.md" target="_blank"><b>NestedIterators</b></a>        </span>      </div>      <span>SudokuValidator#convert_zeros_to_nil contains iterators nested 2 deep</span>          </div>  </li></ol>
+  end
+end
+
+board = [<ol class="nocode errors smells">  <li>    <div class="description">      <div class="heading">        <span>          <i class="fa fa-warning" aria-hidden="true"></i>          <a href="http://docs.seattlerb.org/flay/" target="_blank"><b>DuplicateCode</b></a>        </span>      </div>      <span>Similar code found in 2 nodes</span>              <span>Locations:</span>                  <a href="sudoku_solver.html#L116" class="js-smell-location">0</a>                  <a href="sudoku_validator.html#L82" class="js-smell-location">1</a>                  </div>  </li></ol>
+  [5, 3, 0, 0, 7, 0, 0, 0, 0],
+  [6, 0, 0, 1, 9, 5, 0, 0, 0],
+  [0, 9, 8, 0, 0, 0, 0, 6, 0],
+  [8, 0, 0, 0, 6, 0, 0, 0, 3],
+  [4, 0, 0, 8, 0, 3, 0, 0, 1],
+  [7, 0, 0, 0, 2, 0, 0, 0, 6],
+  [0, 6, 0, 0, 0, 0, 2, 8, 0],
+  [0, 0, 0, 4, 1, 9, 0, 0, 5],
+  [0, 0, 0, 0, 8, 0, 0, 7, 9]
+]
+
+board1 = SudokuValidator.new(board)
+puts board1.valid_board
+</code>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScripts -->
+    <script src="assets/vendor/javascripts/jquery.min.js"></script>
+    <script src="assets/vendor/javascripts/jquery.tablesorter.min.js"></script>
+    <script src="assets/vendor/javascripts/jquery.scrollTo.min.js"></script>
+    <script src="assets/vendor/javascripts/jquery.timeago.js"></script>
+    <script src="assets/vendor/javascripts/highcharts.src-4.0.1.js"></script>
+    <script src="assets/vendor/javascripts/prettify.js"></script>
+    <script src="assets/vendor/javascripts/bootstrap.min.js"></script>
+    <script src="assets/javascripts/application.js"></script>
+    <script src="assets/vendor/javascripts/jquery.filtertable.min.js"></script>
+  </body>
+</html>

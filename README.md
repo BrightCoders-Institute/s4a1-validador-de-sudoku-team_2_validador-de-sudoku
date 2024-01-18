@@ -18,33 +18,36 @@ Things you may want to cover:
 - Credits
 - Badges
 
-## Validador Sudoku
+## Sudoku Solver
 ### Table of contents
 - Description
 - How to install and run the project
-- how to use the project
+- How to use the project
 - credits
 - badges
 
-## description
+### Description
 
-this project is the development of a validator for the Sudoku game, which consists of filling a board with 9 rows and 9 columns and in which the numbers cannot be repeated in any row, column or section.
-This project only validates the Sudoku board.
+**Sudoku solver** es un proyecto derivado del anterior, el cual recibe un tablero con casillas vacias y se completa automaticamente considerando las reglas del juego. 
 
-## How to install and run the project
+### How to install and run the project
 
-to successfully run this project, you must have a current version of ruby installed on your computer, open the folder S4A1-VALIDATOR-DE-SUDOKU-TEAM_2_VALIDATOR-DE-SUDOKU
-open the ruby file named sudoku_validator.rb
-open your terminal and enter the following command
-ruby sudoku_validator.rb
+Para **instalar** el siguiente proyecto antes deberá tener una version de ruby instalada en su equipo, tambien debera descargar la carperta llamada **S4A1-VALIDATOR-DE-SUDOKU-TEAM_2_VALIDATOR-DE-SUDOKU** abrir su **Terminal** y correr el comando <code>ruby sudoku_solver.rb** 
 
-## how to use the project
+## How to use the project
 
-to use the following project you just need to fill the board with the numbers you want, run the program and it will give you one of these two options true if your board is valid or false if your board is invalid.
+para usar el proyecto solo debe ejecutarlo con el siguiente comando <code>ruby sudoku_solver.rb 
 
-## credits
+### Credits
 
-- Alan Hernandez
-- Ana carrizales
-- yhoselin Sanchez
+- Alan Hernández
+- Ana Carrizales
+- Yhoselin Sánchez
 
+### Badges
+
+![Ruby](https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white)
+[![RuboCop Style](https://img.shields.io/badge/code_style-RuboCop-brightgreen.svg)](https://github.com/rubocop/rubocop)
+[![Minitest](https://img.shields.io/badge/test-Minitest-blue.svg)](https://github.com/seattlerb/minitest)
+[![Reek](https://img.shields.io/badge/code_smell-Reek-yellowgreen.svg)](https://github.com/troessner/reek)
+[![RubyCritic](https://img.shields.io/badge/code_quality-RubyCritic-orange.svg)](https://github.com/whitesmith/rubycritic)

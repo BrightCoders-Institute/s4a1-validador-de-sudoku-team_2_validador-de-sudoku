@@ -6,7 +6,7 @@ source 'https://rubygems.org'
 
 # Anade las gemas que necesitas aqui
 
-ruby '3.1.3'
+ruby '2.7.6'
 
 gem 'minitest'
 gem 'reek'
